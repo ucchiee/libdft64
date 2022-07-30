@@ -116,7 +116,13 @@ void tagmap_setb_reg(THREADID tid, unsigned int reg_idx, unsigned int off,
   threads_ctx[tid].vcpu.gpr[reg_idx][off] = tag;
 }
 
-tag_t tagmap_getb(ADDRINT addr) { return *tag_dir_getb_as_ptr(tag_dir, addr); }
+tag_t tagmap_getb(ADDRINT addr) {
+  tag_t const *ptr_color = tag_dir_getb_as_ptr(tag_dir, addr);
+  if (ptr_color)
+    return *ptr_color;
+  else
+    return 0;
+}
 
 tag_t tagmap_getb_reg(THREADID tid, unsigned int reg_idx, unsigned int off) {
   return threads_ctx[tid].vcpu.gpr[reg_idx][off];

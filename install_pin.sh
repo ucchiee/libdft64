@@ -2,9 +2,9 @@
 set -eux
 PREFIX=${PREFIX:-${HOME}}
 
-TAR_NAME="pin-3.20-98437-gf02b61307-gcc-linux"
+TAR_NAME="pin-3.25-98650-g8f6168173-gcc-linux"
 
-wget https://software.intel.com/sites/landingpage/pintool/downloads/${TAR_NAME}.tar.gz
+wget --user-agent "Mozilla/4.0" https://software.intel.com/sites/landingpage/pintool/downloads/${TAR_NAME}.tar.gz
 tar -C ${PREFIX} -xzf ${TAR_NAME}.tar.gz
 rm ${TAR_NAME}.tar.gz
 
